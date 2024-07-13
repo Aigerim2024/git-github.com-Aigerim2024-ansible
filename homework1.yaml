@@ -23,8 +23,7 @@
         append: yes
         shell: /bin/bash
         state: present
-
-        
+    
 - name: Install and configure Nginx web server on Ubuntu
   hosts: ubuntu
   remote_user: ubuntu
@@ -57,4 +56,4 @@
 
     - name: Print Nginx status
       ansible.builtin.debug:
-        msg: "Nginx is {{ nginx_status.stdout }}"
+        msg: "Nginx is {{ nginx_status.stdout }}"    

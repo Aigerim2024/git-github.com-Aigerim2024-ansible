@@ -1,12 +1,9 @@
 ---
-- hosts: amazon-linux
-  remote_user: ec2-user
+- hosts: [amazon-linux]
+  remote_user: amazon-linux
   become: yes
   tasks:
-    # - name: Copy file 
-    #   ansible.builtin.copy:
-    #     src: /tmp/test.txt
-    #     dest: ~/
+    
     - name: install apache server   # name of the play
       yum:
         name: httpd
@@ -37,3 +34,11 @@
       ansible.builtin.service:
         name: docker
         state: reloaded
+    - name: Copy file 
+      ansible.builtin.copy:
+        src: /tmp/test.txt
+        dest: /tmp 
+        notify: test handlers
+  handlers:
+    - name: test handlers
+      shell: echo "Hello Class" >> /tmp/test.txt    

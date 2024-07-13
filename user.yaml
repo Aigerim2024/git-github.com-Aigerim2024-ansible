@@ -2,3 +2,22 @@
   hosts: ubuntu
   remote_user: ubuntu
   become: yes
+
+- name: Create user group 'devs'
+  ansible.builtin.group:
+    name: devs
+    state: present
+    
+- name: Add the user 'johnd' to group
+  ansible.builtin.user:
+    name: johnd
+    comment: John Doe
+    group: devs
+    append: yes
+
+- name: Add the user 'james' to group with a bash shell
+  ansible.builtin.user:
+    name: james
+    shell: /bin/bash
+    groups: devs
+    append: yes
